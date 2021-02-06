@@ -1,0 +1,15 @@
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
+
+# Start builds on tags only (GitHub, BitBucket, GitLab, Gitea)
+# skip_non_tags: true
+
+# Build worker image (VM template)
+image: Visual Studio 2019
+
+artifacts:
+  # pushing a single file
+  - path: main.py
