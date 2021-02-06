@@ -17,3 +17,13 @@ build_script:
 artifacts:
   # pushing a single file
   - path: main.py
+    name: python_script
+
+deploy:
+  description: 'Initial Version'
+  provider: GitHub
+  auth_token:
+    secure: l6RQlR9p5XLRsTH5GtTs4HMR3b819qt5wDzgQUN2zHjbgVdEMkS83Kojsvwp7Qqt
+  artifact: python_script
+  draft: false
+
