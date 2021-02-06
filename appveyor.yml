@@ -16,13 +16,14 @@ environment:
 
 install:
 - set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
-- python --version
-- fail_appveyor
+- python -m venv venv
+- venv/Scripts/activate.bat
 - python -m pip install pyinstaller
 
 # to run your custom scripts instead of automatic MSBuild
 build_script:
 - python -m PyInstaller --onefile main.py
+- success
 
 artifacts:
   # pushing a single file
