@@ -12,11 +12,12 @@ image: Visual Studio 2019
 
 environment:
   matrix:
-  - TOXENV: py38
-    PYTHON: C:\Python38
+  - PYTHON: C:\Python38
 
 install:
-- "set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%"
+- set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
+- python --version
+- fail_appveyor
 - python -m pip install pyinstaller
 
 # to run your custom scripts instead of automatic MSBuild
