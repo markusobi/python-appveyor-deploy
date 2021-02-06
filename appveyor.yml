@@ -11,10 +11,10 @@ branches:
 image: Visual Studio 2019
 
 environment:
-  matrix:
-  - TOXENV: py37
+  PYTHON: C:\Python38\
 
 install:
+- set PATH="%PYTHON%;%PYTHON%\Scripts\;%PATH%"
 - python -m pip install pyinstaller
 
 # to run your custom scripts instead of automatic MSBuild
