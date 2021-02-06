@@ -10,20 +10,30 @@ branches:
 # Build worker image (VM template)
 image: Visual Studio 2019
 
+environment:
+  matrix:
+  - TOXENV: py38
+
+install:
+- pip install pyinstaller
+
 # to run your custom scripts instead of automatic MSBuild
 build_script:
-- cmd: rem
+- cmd: python -m PyInstaller --onefile main.py
 
 artifacts:
   # pushing a single file
   - path: main.py
     name: python_script
 
+  - path: dist/main.exe
+    name: windows_executable
+
 deploy:
   description: 'Initial Version'
   provider: GitHub
   auth_token:
     secure: l6RQlR9p5XLRsTH5GtTs4HMR3b819qt5wDzgQUN2zHjbgVdEMkS83Kojsvwp7Qqt
-  artifact: python_script
+  artifact: python_script, windows_executable
   draft: false
 
