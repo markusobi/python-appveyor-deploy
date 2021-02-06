@@ -18,6 +18,7 @@ install:
 - set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
 - python -m venv venv
 - venv/Scripts/activate.bat
+- python -m pip install wheel
 - ps: ./build_and_install_pyinstaller.ps1
 
 # to run your custom scripts instead of automatic MSBuild
