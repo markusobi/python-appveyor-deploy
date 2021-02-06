@@ -1,4 +1,4 @@
-$ErrorActionPreference = "Stop"
+# $ErrorActionPreference = "Stop"
 
 # configuration area
 $PYINSTALLER_VERSION = 'v4.2'
