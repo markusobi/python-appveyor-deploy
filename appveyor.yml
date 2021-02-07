@@ -1,11 +1,8 @@
-# branches to build
+# build is triggered on commits and PRs to the following branches
 branches:
   # whitelist
   only:
     - master
-
-# Start builds on tags only
-skip_non_tags: true
 
 image: Visual Studio 2019
 
@@ -30,9 +27,8 @@ cache:
 # run a custom scripts instead of automatic MSBuild
 build_script:
 - mkdir build
-- pushd build
+- cd build
 - python -m PyInstaller --onefile ../hello_world.py
-- popd
 
 artifacts:
   - path: hello_world.py
@@ -47,5 +43,7 @@ deploy:
   auth_token:
     secure: l6RQlR9p5XLRsTH5GtTs4HMR3b819qt5wDzgQUN2zHjbgVdEMkS83Kojsvwp7Qqt
   artifact: python_script, windows_executable
-  draft: true
+  draft: false
+  on:
+    APPVEYOR_REPO_TAG: true
 
