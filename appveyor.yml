@@ -23,7 +23,6 @@ install:
 # run a custom scripts instead of automatic MSBuild
 build_script:
 - python -m PyInstaller --onefile main.py
-- success
 
 artifacts:
   - path: main.py
