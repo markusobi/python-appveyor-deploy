@@ -26,7 +26,7 @@ install:
 - venv/Scripts/activate.bat
 
 cache:
-  - '%UserProfile%\venv\ -> build_and_install_pyinstaller.ps1, appveyor.yml'
+  - '%APPVEYOR_BUILD_FOLDER%\venv\ -> build_and_install_pyinstaller.ps1, appveyor.yml'
 
 # run a custom scripts instead of automatic MSBuild
 build_script:
