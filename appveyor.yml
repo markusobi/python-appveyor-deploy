@@ -19,7 +19,7 @@ install:
 - ps: >-
     If (!(Test-Path venv/)) {
       python -m venv venv
-      venv/Scripts/activate.bat
+      venv/Scripts/Activate.ps1
       ./build_and_install_pyinstaller.ps1
       deactivate
     }
