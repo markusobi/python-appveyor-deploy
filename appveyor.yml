@@ -25,6 +25,9 @@ install:
     }
 - venv/Scripts/activate.bat
 
+cache:
+  - venv/ -> build_and_install_pyinstaller.ps1, appveyor.yml
+
 # run a custom scripts instead of automatic MSBuild
 build_script:
 - python -m PyInstaller --onefile main.py
