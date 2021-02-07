@@ -16,12 +16,13 @@ environment:
 
 install:
 - set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
-- if not exist venv/ (
-    python -m venv venv
-    venv/Scripts/activate.bat
-    Powershell.exe -executionpolicy remotesigned -File ./build_and_install_pyinstaller.ps1
-    deactivate
-  )
+- ps: >-
+    If (!(Test-Path venv/)) {
+      python -m venv venv
+      venv/Scripts/activate.bat
+      ./build_and_install_pyinstaller.ps1
+      deactivate
+    }
 - venv/Scripts/activate.bat
 
 # run a custom scripts instead of automatic MSBuild
