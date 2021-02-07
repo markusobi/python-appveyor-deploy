@@ -1,4 +1,4 @@
-# $ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Stop"
 
 # configuration area
 $PYINSTALLER_VERSION = 'v4.2'
@@ -24,8 +24,10 @@ popd
 
 # install pyinstaller python package
 pushd pyinstaller_src
+$ErrorActionPreference = "Continue"
 python setup.py install
-python -m pip show pyinstaller # show version
+$ErrorActionPreference = "Stop"
+python -m pip show pyinstaller
 popd
 rm -r -fo pyinstaller_src/
 
