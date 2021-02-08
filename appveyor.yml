@@ -12,17 +12,7 @@ environment:
 
 install:
 - set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
-- ps: >-
-    If (!(Test-Path venv/)) {
-      python -m venv venv
-      venv/Scripts/Activate.ps1
-      ./build_and_install_pyinstaller.ps1
-      deactivate
-    }
-- venv/Scripts/activate.bat
-
-cache:
-  - '%APPVEYOR_BUILD_FOLDER%\venv\ -> build_and_install_pyinstaller.ps1, appveyor.yml'
+- python -m pip install pyinstaller
 
 # run a custom scripts instead of automatic MSBuild
 build_script:
