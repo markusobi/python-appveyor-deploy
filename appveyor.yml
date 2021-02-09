@@ -23,7 +23,6 @@ install:
     }
 - set WINDOWS_ZIP_FILENAME=hello_world-%BUILD_NUMBER_OR_TAG_NAME%-windows-x86.zip
 - echo windows artifact zip filename is %WINDOWS_ZIP_FILENAME%
-- failfast
 - python -m pip install pyinstaller
 
 # run a custom scripts instead of automatic MSBuild
