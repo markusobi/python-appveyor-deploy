@@ -18,13 +18,15 @@ install:
 build_script:
 - mkdir build
 - cd build
-- python -m PyInstaller --onefile ../hello_world.py
+- python -m PyInstaller ../hello_world.py
+- python -VV
+- 7z a "hello_world-%APPVEYOR_REPO_TAG_NAME%-windows-x86.zip" ./dist/hello_world/
 
 artifacts:
   - path: hello_world.py
     name: python_script
 
-  - path: build/dist/hello_world.exe
+  - path: "build/hello_world-%APPVEYOR_REPO_TAG_NAME%-windows-x86.zip"
     name: windows_executable
 
 deploy:
