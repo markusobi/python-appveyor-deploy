@@ -12,7 +12,7 @@ environment:
 
 install:
 - set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
- ps: >-
+- ps: >-
     If ($env:APPVEYOR_REPO_TAG -eq "true")
     {
       $env:BUILD_NUMBER_OR_TAG_NAME = $env:APPVEYOR_REPO_TAG_NAME
