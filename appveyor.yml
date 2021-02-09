@@ -12,7 +12,10 @@ environment:
 
 install:
 - set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
-- python -VV
+- ps: $env:BUILD_NUMBER_OR_TAG_NAME=&{If($env:APPVEYOR_REPO_TAG -eq "true") {"$env:APPVEYOR_REPO_TAG_NAME"} Else {"$env:APPVEYOR_BUILD_NUMBER$env:APPVEYOR_REPO_COMMIT"}}
+- ps: echo $env:BUILD_NUMBER_OR_TAG_NAME
+- echo %BUILD_NUMBER_OR_TAG_NAME%
+- failfast
 - python -m pip install pyinstaller
 
 # run a custom scripts instead of automatic MSBuild
