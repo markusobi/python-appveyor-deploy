@@ -19,10 +19,11 @@ install:
     }
     Else
     {
-      $env:BUILD_NUMBER_OR_TAG_NAME = "$env:APPVEYOR_BUILD_NUMBER.$env:APPVEYOR_REPO_COMMIT"}
+      $env:BUILD_NUMBER_OR_TAG_NAME = "$env:APPVEYOR_BUILD_NUMBER.$env:APPVEYOR_REPO_COMMIT"
     }
 - set WINDOWS_ZIP_FILENAME=hello_world-%BUILD_NUMBER_OR_TAG_NAME%-windows-x86.zip
-- echo windows artifact zip filename: %WINDOWS_ZIP_FILENAME%
+- echo windows artifact zip filename is %WINDOWS_ZIP_FILENAME%
+- failfast
 - python -m pip install pyinstaller
 
 # run a custom scripts instead of automatic MSBuild
