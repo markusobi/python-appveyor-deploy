@@ -12,10 +12,15 @@ environment:
 
 install:
 - set PATH=%PYTHON%;%PYTHON%/Scripts;%PATH%
-- ps: $env:BUILD_NUMBER_OR_TAG_NAME=&{If($env:APPVEYOR_REPO_TAG -eq "true") {"$env:APPVEYOR_REPO_TAG_NAME"} Else {"$env:APPVEYOR_BUILD_NUMBER$env:APPVEYOR_REPO_COMMIT"}}
-- ps: echo $env:BUILD_NUMBER_OR_TAG_NAME
-- echo %BUILD_NUMBER_OR_TAG_NAME%
-- failfast
+ ps: >-
+    If ($env:APPVEYOR_REPO_TAG -eq "true")
+    {
+      $env:BUILD_NUMBER_OR_TAG_NAME = $env:APPVEYOR_REPO_TAG_NAME
+    Else
+    {
+      $env:BUILD_NUMBER_OR_TAG_NAME = "$env:APPVEYOR_BUILD_NUMBER.$env:APPVEYOR_REPO_COMMIT"}
+    }
+- set WINDOWS_ZIP_FILENAME=hello_world-%BUILD_NUMBER_OR_TAG_NAME%-windows-x86.zip
 - python -m pip install pyinstaller
 
 # run a custom scripts instead of automatic MSBuild
@@ -23,13 +28,13 @@ build_script:
 - mkdir build
 - cd build
 - python -m PyInstaller ../hello_world.py
-- 7z a hello_world-windows-x86.zip ./dist/hello_world/
+- 7z a %WINDOWS_ZIP_FILENAME% ./dist/hello_world/
 
 artifacts:
   - path: hello_world.py
     name: python_script
 
-  - path: build/hello_world-windows-x86.zip
+  - path: build/$(WINDOWS_ZIP_FILENAME)
     name: windows_executable
 
 deploy:
